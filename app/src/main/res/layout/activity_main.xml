@@ -5,37 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-120dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aplicaciones moviles y servicios telematicos"
-            android:textSize="30dip"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            >
+            android:text="Aplicaciones moviles y servicios telematicos"
+            android:textSize="30dip">
+        </TextView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Examen Practico"
+            android:textSize="25dip">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:gravity="center"
+            android:text="Miguel Bailon - Ma. Eugenia Carrillo - David Mendoza"
+            android:textSize="25dip">
 
         </TextView>
 
         <EditText
             android:id="@+id/heroeInsertar"
+
             android:hint="@string/hint"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textSize="20dip"
             android:gravity="center" />
+
         <Button
             android:id="@+id/botonBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscar Heroes"
             android:onClick="irSugerencias"
-            />
+            android:text="Buscar Heroes"
+
+            android:textSize="25dip"
+            >
+
+        </Button>
     </LinearLayout>
 
 
