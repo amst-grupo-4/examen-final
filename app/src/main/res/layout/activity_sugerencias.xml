@@ -13,17 +13,19 @@
         tools:layout_editor_absoluteY="125dp">
 
         <LinearLayout
+            android:id="@+id/ly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                />
         </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hola"
-            >
 
-        </TextView>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

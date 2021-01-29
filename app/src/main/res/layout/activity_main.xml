@@ -46,14 +46,12 @@
 
         <EditText
             android:id="@+id/heroeInsertar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:hint="Busqueda por nombre"
-            android:textSize="30dip">
 
-        </EditText>
+            android:hint="@string/hint"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="20dip"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/botonBuscar"
@@ -61,6 +59,7 @@
             android:layout_height="wrap_content"
             android:onClick="irSugerencias"
             android:text="Buscar Heroes"
+
             android:textSize="25dip"
             >
 

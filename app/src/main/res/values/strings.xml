@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ExamenFinal</string>
+    <string name="hint">Inserte el heroe a buscar</string>
 </resources>

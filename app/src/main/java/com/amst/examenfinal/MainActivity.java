@@ -10,18 +10,21 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private EditText heroeFiltro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        heroeFiltro= findViewById(R.id.heroeInsertar);
+
         setContentView(R.layout.activity_main);
     }
 
 
     public void irSugerencias(View view){
+        heroeFiltro= findViewById(R.id.heroeInsertar);
         String heroe= heroeFiltro.getText().toString();
         Intent intent= new Intent(this.getApplicationContext(),Sugerencias.class);
         intent.putExtra("sugerencia",heroe);
         startActivity(intent);
     }
+
 }
