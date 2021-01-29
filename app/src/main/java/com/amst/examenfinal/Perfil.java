@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -11,10 +12,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +50,8 @@ public class Perfil extends AppCompatActivity {
         //set Powers
         powers.add("intelligence"); powers.add("strength"); powers.add("speed");
         powers.add("durability"); powers.add("power"); powers.add("combat");
+        //Request
+        ListaRequest= Volley.newRequestQueue(this);
         //Obtener el id del personaje.
         Intent intent = getIntent();
         id_real = intent.getStringExtra("id");
@@ -55,7 +62,7 @@ public class Perfil extends AppCompatActivity {
 
 
     public void iniciarGrafico(){
-        //graficosBarras = findViewById();
+        graficosBarras = findViewById(R.id.barChart);
         graficosBarras.getDescription().setEnabled(false);
         graficosBarras.setMaxVisibleValueCount(150);
         graficosBarras.setPinchZoom(false);
@@ -73,7 +80,7 @@ public class Perfil extends AppCompatActivity {
     }
 
     public void estadisticasHeroe(){
-        String url_heroes = "https://www.superher|oapi.com/api.php/"+token+"/"+id+"/powerstats";
+        String url_heroes = "https://www.superheroapi.com/api.php/"+token+"/"+id+"/powerstats";
         JsonArrayRequest requestEstadisticas = new JsonArrayRequest(
                 Request.Method.GET, url_heroes,null, new Response.Listener<JSONArray>()
         {
@@ -112,12 +119,36 @@ public class Perfil extends AppCompatActivity {
             e.printStackTrace();
             System.out.println("Error");
         }
+        llenarGrafico(graph_powers);
     }
 
     public void llenarGrafico(ArrayList<BarEntry> graph_powers){
         BarDataSet powersDataSet;
-        if(graficosBarras.getData()!= null && graficosBarras.getData().getDataSetCount()>0){
+        if(graficosBarras.getData() != null && graficosBarras.getData().getDataSetCount()>0){
+            powersDataSet = (BarDataSet) graficosBarras.getData().getDataSetByIndex(0);
+            powersDataSet.setValues(graph_powers);
+            graficosBarras.getData().notifyDataChanged();
+            graficosBarras.notifyDataSetChanged();
+        } else {
+            powersDataSet = new BarDataSet (graph_powers,"Data Set");
+            powersDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            powersDataSet.setDrawValues(true);
 
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+            dataSets.add(powersDataSet);
+
+            BarData data = new BarData(dataSets);
+            graficosBarras.setData(data);
+            graficosBarras.setFitBars(true);
         }
+        graficosBarras.invalidate();
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                estadisticasHeroe();
+            }
+        };
+        handler.postDelayed(runnable,3000);
     }
 }
