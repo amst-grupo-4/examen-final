@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:hint="Inserte el heroe a buscar"
+            android:hint="Busqueda por nombre"
             android:textSize="30dip">
 
         </EditText>
