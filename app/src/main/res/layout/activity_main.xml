@@ -21,21 +21,21 @@
 
 
         </TextView>
+
         <EditText
             android:id="@+id/heroeInsertar"
-            android:hint="Inserte el heroe a buscar"
-
+            android:hint="@string/hint"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textSize="20dip"
-            android:gravity="center"
-            ></EditText>
+            android:gravity="center" />
         <Button
             android:id="@+id/botonBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Buscar Heroes"
-            android:onClick="irSugerencias"></Button>
+            android:onClick="irSugerencias"
+            />
     </LinearLayout>
 
 
